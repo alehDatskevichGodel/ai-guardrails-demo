@@ -1,0 +1,14 @@
+{
+  "name": "ai-guardrails-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sandbox project showing technical guardrails for an AI coding agent (Claude Code hooks + allowlist)",
+  "scripts": {
+    "build": "node -e \"import('node:fs').then(f => f.cpSync('src', 'dist', { recursive: true }))\"",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
