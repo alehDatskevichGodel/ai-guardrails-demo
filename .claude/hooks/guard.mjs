@@ -48,7 +48,8 @@ function decideBash(command, startBranch) {
   let branch = startBranch; // tracked through `git switch x && git commit`
   // Split chains (&&, ||, ;, |, newline) so `git checkout main && git commit` cannot hide a commit.
   for (const segment of command.split(/&&|\|\||[;|\n]/)) {
-    const tokens = segment.trim().split(/\s+/).map((t) => t.replace(/^['"]|['"]$/g, ''));
+    const tokens = segment.trim().split(/\s+/).map((t) => t.replace(/^['"]|['"]$/g, ''))
+      .filter((t) => !/^[0-9]*[<>]/.test(t)); // drop redirects like 2>&1, >file
 
     if (tokens[0] === 'gh' && tokens[1] === 'pr' && tokens[2] === 'merge') {
       return deny('Merging pull requests is human-only (only 2 people may merge).');

@@ -25,6 +25,7 @@ const cases = [
   ['push current feature', bash('git push -u origin feature/x', 'feature/x'), false],
   ['push HEAD:main from feature', bash('git push origin HEAD:main', 'feature/x'), true],
   ['push main', bash('git push origin main', 'main'), true],
+  ['push feature with redirect (2>&1)', bash('git push origin feature/x 2>&1 | tail -3', 'feature/x'), false],
   ['force push', bash('git push --force origin feature/x', 'feature/x'), true],
 
   // Rule 2: merge order feature -> dev -> release -> main
